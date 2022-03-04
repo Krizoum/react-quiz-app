@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Categorys from "./components/Categorys";
 import Game from "./components/Game";
+import NavBar from "./components/NavBar";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState();
@@ -12,6 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <NavBar />
         <Routes>
           <Route
             path="/"

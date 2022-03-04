@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const Answesrs = ({
@@ -7,9 +8,11 @@ const Answesrs = ({
   setScore,
   clicked,
   setClicked,
+  wrongAnswer,
+  setWrongAnswer,
 }) => {
   const [options, setOptions] = useState();
-  const [wrongAnswer, setWrongAnswer] = useState(false);
+  // const [wrongAnswer, setWrongAnswer] = useState(false);
 
   useEffect(() => {
     setClicked(false);
@@ -33,37 +36,50 @@ const Answesrs = ({
   }
 
   return (
-    <div className="answesrs">
-      {options &&
-        options.map((option) => (
-          <div
-            className="answer"
-            dangerouslySetInnerHTML={{ __html: option }}
-            key={option}
-            onClick={(e) => {
-              if (!clicked) {
-                if (e.target.innerHTML === data[questionIndex].correct_answer) {
-                  e.target.classList.add("correct");
-                  setScore(score + 1);
-                } else {
-                  e.target.classList.add("incorrect");
-                  setWrongAnswer(true);
-                }
-
-                setClicked(true);
-              }
-            }}
-          ></div>
-        ))}
+    <>
       {wrongAnswer && (
-        <div className="correct-answer">
+        <motion.div
+          className="correct-answer"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
           <div className="correct-answer-chaild">
             the correct answer is :{" "}
-            <span>{data[questionIndex].correct_answer}</span>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: data[questionIndex].correct_answer,
+              }}
+            ></span>
           </div>
-        </div>
+        </motion.div>
       )}
-    </div>
+      <div className="answesrs">
+        <div className="score">Score : {score}</div>
+        {options &&
+          options.map((option) => (
+            <div
+              className="answer"
+              dangerouslySetInnerHTML={{ __html: option }}
+              key={option}
+              onClick={(e) => {
+                if (!clicked) {
+                  if (
+                    e.target.innerHTML === data[questionIndex].correct_answer
+                  ) {
+                    e.target.classList.add("correct");
+                    setScore(score + 1);
+                  } else {
+                    e.target.classList.add("incorrect");
+                    setWrongAnswer(true);
+                  }
+
+                  setClicked(true);
+                }
+              }}
+            ></div>
+          ))}
+      </div>
+    </>
   );
 };
 
