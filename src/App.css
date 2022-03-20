@@ -1,7 +1,10 @@
 :root {
-  --pr-color: #32e7e7;
+  --pr-color: #909090;
+  --sc-color: #303030;
+  --bg-color: #202020;
+  /* --pr-color: #32e7e7;
   --sc-color: #0785a1;
-  --bg-color: #044958;
+  --bg-color: #044958; */
 }
 
 * {
@@ -20,11 +23,7 @@ body {
 }
 nav {
   background: rgb(7, 133, 161);
-  background: linear-gradient(
-    180deg,
-    rgba(7, 133, 161, 1) 0%,
-    rgba(4, 73, 88, 0.75) 100%
-  );
+  background: linear-gradient(180deg, var(--sc-color) 0%, var(--bg-color) 100%);
 }
 nav .nav-bar {
   display: flex;
@@ -35,7 +34,7 @@ nav .nav-bar {
   align-items: center;
 }
 
-nav svg {
+nav a svg {
   width: 35px;
 }
 nav h2 {
@@ -174,20 +173,23 @@ nav h2 {
   margin-top: 100px;
   display: flex;
   flex-flow: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
   color: var(--pr-color);
+  height: 60vh;
 }
 .categorys {
   border: 5px solid var(--pr-color);
   border-radius: 20px;
   width: 80%;
   padding-top: 40px;
-  position: absolute;
+  margin: auto;
+  /* position: absolute;
   bottom: 20px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); */
+  height: calc(100vh - 250px);
 }
 
 .categorys select:focus-visible {

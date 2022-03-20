@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Categorys = ({
   setSelectedCategory,
@@ -8,6 +9,7 @@ const Categorys = ({
   selectedCategory,
   difficulty,
   numberOfQuestion,
+  setSeted,
 }) => {
   const [categorys] = useState([
     {
@@ -112,7 +114,11 @@ const Categorys = ({
     },
   ]);
   return (
-    <>
+    <motion.div
+      initial={{ x: "-100vw" }}
+      animate={{ x: 0 }}
+      exit={{ x: "100vw" }}
+    >
       <h1 className="heading-one">Welcom to simpel quiz app </h1>
       <form className="categorys">
         <label>category</label>
@@ -154,7 +160,7 @@ const Categorys = ({
           max="50"
           value={numberOfQuestion}
         />
-        <Link to="/game">
+        <Link to="/game" onClick={setSeted(true)}>
           <svg
             width="80"
             height="80"
@@ -165,12 +171,12 @@ const Categorys = ({
             <path
               id="Vector"
               d="M40 0C17.9062 0 0 17.9062 0 40C0 62.0938 17.9062 80 40 80C62.0938 80 80 62.0938 80 40C80 17.9062 62.0938 0 40 0ZM56.0312 43.5312L38.5312 61.0312C36.5781 62.9844 33.4141 62.9844 31.4609 61.0312C29.5078 59.0781 29.5078 55.9141 31.4609 53.9609L45.4375 40L31.4688 26.0312C29.5156 24.0781 29.5156 20.9141 31.4688 18.9609C33.4219 17.0078 36.5859 17.0078 38.5391 18.9609L56.0391 36.4609C57.0156 37.4375 57.5 38.7188 57.5 40C57.5 41.2812 57.0156 42.5625 56.0312 43.5312Z"
-              fill="#32E7E7"
+              fill="#909090"
             />
           </svg>
         </Link>
       </form>
-    </>
+    </motion.div>
   );
 };
 

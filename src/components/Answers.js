@@ -24,6 +24,7 @@ const Answesrs = ({
           ...data[questionIndex]?.incorrect_answers,
         ])
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, questionIndex]);
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -42,6 +43,7 @@ const Answesrs = ({
           className="correct-answer"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
           <div className="correct-answer-chaild">
             the correct answer is :{" "}
