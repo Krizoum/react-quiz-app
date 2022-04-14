@@ -48,13 +48,13 @@ nav h2 {
   margin-top: 100px;
 }
 .game .question {
-  transition: 0.5s;
+  transition: 0.5s ease-in-out;
 }
 
 .cl {
   margin-bottom: 40px;
 }
-.game .answesrs {
+.game .answers {
   position: relative;
   width: 100%;
   display: grid;
@@ -81,7 +81,7 @@ nav h2 {
   color: #1affd5;
   font-weight: bold;
 }
-.game .answesrs .answer {
+.game .answers .answer {
   max-width: 25%;
   min-width: 300px;
   background-color: var(--sc-color);
@@ -90,13 +90,13 @@ nav h2 {
   cursor: pointer;
 }
 
-.game .answesrs .correct {
+.game .answers .correct {
   background-color: #1affd5;
 }
-.game .answesrs .incorrect {
+.game .answers .incorrect {
   background-color: #e51919;
 }
-.game .answesrs .score {
+.game .answers .score {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -264,13 +264,13 @@ nav h2 {
   .game {
     margin-top: 20px;
   }
-  /* .game .answesrs .answer {
+  /* .game .answers .answer {
     grid-column: 1 / span 2;
   } */
-  .game .answesrs {
+  .game .answers {
     grid-template-columns: auto;
   }
-  .game .answesrs .score {
+  .game .answers .score {
     position: inherit;
   }
   .game .question {

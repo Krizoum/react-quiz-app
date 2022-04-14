@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Answesrs from "./Answers";
+import Answers from "./Answers";
 
 const Game = ({
   selectedCategory,
@@ -19,22 +19,27 @@ const Game = ({
   const [clicked, setClicked] = useState(false);
   const [wrongAnswer, setWrongAnswer] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
-    seted
-      ? fetch(
-          `https://opentdb.com/api.php?amount=${
-            numberOfQuestion ? numberOfQuestion : "2"
-          }&category=${selectedCategory ? selectedCategory : ""}&difficulty=${
-            difficulty ? difficulty : ""
-          }&type=multiple`
-        )
-          .then((res) => res.json())
-          .then((dat) => {
-            setData(dat.results);
-            setIsLoading(false);
-          })
-          .catch((err) => console.log(err))
-      : navigate("/");
+    if (seted) {
+      setQuestionIndex(0);
+      setScore(0);
+      fetch(
+        `https://opentdb.com/api.php?amount=${
+          numberOfQuestion ? numberOfQuestion : "2"
+        }&category=${selectedCategory ? selectedCategory : ""}&difficulty=${
+          difficulty ? difficulty : ""
+        }&type=multiple`
+      )
+        .then((res) => res.json())
+        .then((dat) => {
+          setData(dat.results);
+          setIsLoading(false);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      navigate("/");
+    }
   }, []);
 
   let nextQuestion = () => {
@@ -55,11 +60,11 @@ const Game = ({
       animate={{ x: 0 }}
       exit={{ x: "100vw" }}
     >
-      <motion.div>
+      <div>
         {isLoading && <div className="loading">Loading ...</div>}
         {data && (
           <motion.div
-            initial={{ opacity: 0, y: 400, x: -200 }}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
           >
             <h3 className="category">{data[questionIndex].category}</h3>
@@ -67,7 +72,7 @@ const Game = ({
               dangerouslySetInnerHTML={{ __html: data[questionIndex].question }}
               className={wrongAnswer ? "question cl" : "question"}
             ></h1>
-            <Answesrs
+            <Answers
               data={data}
               questionIndex={questionIndex}
               score={score}
@@ -81,6 +86,7 @@ const Game = ({
               <span
                 style={{
                   width: `${((questionIndex + 1) / numberOfQuestion) * 100}%`,
+                  transition: "1s ease-in-out",
                 }}
               ></span>
               <p>
@@ -110,7 +116,7 @@ const Game = ({
             )}
           </motion.div>
         )}
-      </motion.div>
+      </div>
     </motion.div>
   );
 };

@@ -1,7 +1,6 @@
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const Answesrs = ({
+const Answers = ({
   data,
   questionIndex,
   score,
@@ -39,12 +38,7 @@ const Answesrs = ({
   return (
     <>
       {wrongAnswer && (
-        <motion.div
-          className="correct-answer"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
+        <div className="correct-answer">
           <div className="correct-answer-chaild">
             the correct answer is :{" "}
             <span
@@ -53,9 +47,9 @@ const Answesrs = ({
               }}
             ></span>
           </div>
-        </motion.div>
+        </div>
       )}
-      <div className="answesrs">
+      <div className="answers">
         <div className="score">Score : {score}</div>
         {options &&
           options.map((option) => (
@@ -85,4 +79,4 @@ const Answesrs = ({
   );
 };
 
-export default Answesrs;
+export default Answers;

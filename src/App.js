@@ -16,6 +16,7 @@ function App() {
   const location = useLocation();
   let [questionIndex, setQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
+
   return (
     <div className="App">
       <NavBar />
