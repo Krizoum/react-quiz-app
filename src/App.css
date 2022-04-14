@@ -63,6 +63,7 @@ nav h2 {
   gap: 20px;
   text-align: center;
   margin: 20px 0;
+  justify-items: center;
 }
 .game .correct-answer {
   width: 100%;
